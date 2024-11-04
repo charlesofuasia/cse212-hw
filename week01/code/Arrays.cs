@@ -9,11 +9,25 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // STEPS
+        // Initialize a variable (multiple), and set it to the given number
+        // Create an empty array (multiples) to store the generated multiples of number
+        // Loop length times
+        // In each iteration, add the current multiple to multiples and increase multiple by number
+        // The loop ends after running length times
+        // Return multiples
 
-        return []; // replace this return statement with your own
+        double multiple = number;
+        var multiples = new List<double>();
+
+        for (int i = 0; i < length; i++)
+        {
+            multiples.Add(multiple);
+            multiple += number;
+        }
+
+
+        return multiples.ToArray();
     }
 
     /// <summary>
@@ -26,8 +40,20 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        //STEPS
+        // Determine the rotation point by getting the difference between the total count of items and the amount to be rotated.
+        // Split the data into two sub-arrays
+        // Array1 Starts from the rotation point to the end of the array
+        // Array2 starts from 0 index to the rotation point
+        // clear the data and rebuild by first adding array1, and then add array2
+
+        int rotationPoint = data.Count - amount;
+        List<int> arr1 = data.GetRange(rotationPoint, amount);
+        List<int> arr2 = data.GetRange(0, rotationPoint);
+
+        data.Clear();
+        data.AddRange(arr1);
+        data.AddRange(arr2);
+
     }
 }
