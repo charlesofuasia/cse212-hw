@@ -1,3 +1,5 @@
+using NuGet.Frameworks;
+
 public class Node
 {
     public int Data { get; set; }
@@ -12,6 +14,10 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
+        if (Data == value)
+        {
+            return;
+        }
 
         if (value < Data)
         {
@@ -34,12 +40,60 @@ public class Node
     public bool Contains(int value)
     {
         // TODO Start Problem 2
-        return false;
+        if (value == Data)
+        {
+            return true;
+        }
+        if (value < Data)
+        {
+            if (Left == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Left.Contains(value);
+            }
+        }
+        else
+        {
+            if (Right == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Right.Contains(value);
+            }
+        }
+
+
     }
 
     public int GetHeight()
     {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        int ltHt = 0;
+        int rtHt = 0;
+        if (Left == null && Right == null)
+        {
+            return 1;
+        }
+        else
+        {
+            if (Left != null)
+            {
+                ltHt = Left.GetHeight();
+            }
+            if (Right != null)
+            {
+                rtHt = Right.GetHeight();
+            }
+            int height = Math.Max(rtHt, ltHt);
+            return height + 1;
+        }
+
+
+
     }
 }
